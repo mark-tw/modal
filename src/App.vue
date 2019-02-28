@@ -1,59 +1,35 @@
 <template>
 
   <div id="app">
-      <h1> Task Manager</h1>
-    <p><input
-            type="text"
-            placeholder="Write task"
-            v-model="taskInput"
-    ></p>
-    <form>
-      <button @click="AddTask">Add Task </button>
-    </form>
-    <div class="task-list">
-      <task v-for="(task, index) in tasks"
-              :index="index"
-              :task="task"
-              :key="index"
-              @deleteTask="deleteTask"
-      />
-    <button v-if="tasks.length" @click="DeleteAll">Delete All</button>
+    <div class="container">
+      <img id="img" @click="openModal"
+         src="@/assets/img/fill-172.png"/>
+               <label>DURATION
+            <p>
+                <input>
+            </p>
+        </label>
+        <Modal :modalOpened="modalOpened" @close="closeModal"/>
+  </div>
     </div>
-    <button @click="openModal">OPEN MODAL</button>
-    <Modal :modalOpened="modalOpened" @close="closeModal"/>
-    </div>
+
 </template>
 
 <script>
-import Task from '@/Task'
+
 import Modal from '@/Modal'
 export default {
   name: 'App',
   components: {
-    Modal, Task},
+    Modal
+  },
   data () {
     return {
-      taskInput: '',
-      tasks: [],
       modalOpened: false,
-      loginInput: ''
+      inputMessage: ''
     }
   },
   methods: {
-    AddTask () {
-      if (this.taskInput) {
-        this.tasks.push(this.taskInput)
-      }
-      this.taskInput = ''
-    },
-    DeleteAll () {
-      if (this.tasks) {
-        this.tasks = []
-      }
-    },
-    deleteTask (task) {
-      this.tasks = this.tasks.filter(x => x !== task)
-    },
     openModal () {
       this.modalOpened = true
     },
@@ -66,14 +42,64 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+font-family: Lato;
+font-size: 14px;
+font-weight: bold;
+font-style: normal;
+font-stretch: normal;
+line-height: 1.43;
+letter-spacing: normal;
+color: #3c4a5a;
+margin-left: 600px;
+}
+.container{
+width: 372px;
+height: 349px;
+border: 1px solid gray;
+display: flex;
+flex-direction: column;
 }
 
+#img {
+  width: 16.4px;
+  height: 16.4px;
+  margin-top: 67px;
+  margin-left: 165px;
+  opacity: 0.9;
+  background-color: white;
+}
+#img:hover{
+    border-radius: 2px;
+    background-color: #b2bdc6;
+    opacity: 0.7;
+    box-shadow: inset 0 -2px 0 0 #b2bdc6;
+}
+
+label{
+margin-top: 25px;
+    width: 65px;
+    height: 13px;
+    font-family: Lato;
+    font-size: 11px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: 0.9px;
+    color: #3c4a5a;
+    margin-left: 127px;
+}
+label:focus-within{
+   color: #2db9f0;
+}
+input{
+    border: none;
+    outline:none;
+}
+input:focus{
+    caret-color: #2db9f0;
+    text-decoration: underline #2db9f0;
+}
 </style>
