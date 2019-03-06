@@ -1,22 +1,23 @@
 <template>
 
   <div id="app">
-    <div class="container">
-      <img id="img" @click="openModal"
-         src="@/assets/img/fill-172.png"/>
-               <label>DURATION
-            <p>
-                <input>
-            </p>
-        </label>
-        <Modal :modalOpened="modalOpened" @close="closeModal"/>
+    <button  :class="{active: isActive}"
+             @click="isActive=!isActive">
+        <div class="container"
+             @click="openModal"
+        >
+            <img id="img"
+                 src="@/assets/img/fill-172.png"
+
+            />
+        </div>
+    </button>
+           <Modal v-if="modalOpened = isActive"
+           >
+           </Modal>
   </div>
-    </div>
-
 </template>
-
 <script>
-
 import Modal from '@/Modal'
 export default {
   name: 'App',
@@ -26,80 +27,52 @@ export default {
   data () {
     return {
       modalOpened: false,
-      inputMessage: ''
+      isActive: false
     }
   },
   methods: {
     openModal () {
       this.modalOpened = true
-    },
-    closeModal () {
-      this.modalOpened = false
     }
-
   }
 }
-
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css?family=Lato');
 #app {
-font-family: Lato;
-font-size: 14px;
-font-weight: bold;
-font-style: normal;
-font-stretch: normal;
-line-height: 1.43;
-letter-spacing: normal;
-color: #3c4a5a;
-margin-left: 600px;
-}
-.container{
-width: 372px;
-height: 349px;
-border: 1px solid gray;
+margin-top: 201px;
 display: flex;
 flex-direction: column;
+align-items: center;
 }
-
-#img {
-  width: 16.4px;
-  height: 16.4px;
-  margin-top: 67px;
-  margin-left: 165px;
-  opacity: 0.9;
-  background-color: white;
-}
-#img:hover{
-    border-radius: 2px;
-    background-color: #b2bdc6;
-    opacity: 0.7;
-    box-shadow: inset 0 -2px 0 0 #b2bdc6;
-}
-
-label{
-margin-top: 25px;
-    width: 65px;
-    height: 13px;
-    font-family: Lato;
-    font-size: 11px;
-    font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: 0.9px;
-    color: #3c4a5a;
-    margin-left: 127px;
-}
-label:focus-within{
-   color: #2db9f0;
-}
-input{
+button{
+    padding: 0;
     border: none;
-    outline:none;
+    font: inherit;
+    color: inherit;
+    outline: none;
+    background-color: transparent;
+    opacity: 0.7;
 }
-input:focus{
-    caret-color: #2db9f0;
-    text-decoration: underline #2db9f0;
+.active{
+    opacity: 1;
+    border-radius: 2px;
+    background-color: #eaedf3;
 }
+
+.container{
+width: 32px;
+height: 32px;
+object-fit: contain;
+display: flex;
+justify-content: center;
+align-items: center;
+opacity: 0.9;
+}
+.container:hover {
+    border-radius: 2px;
+    background-color: #f3f4f6
+}
+
 </style>
