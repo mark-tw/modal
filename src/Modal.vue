@@ -8,18 +8,26 @@
                   <label>DURATION
                     <input type="text"
                            v-model="durationInput"
-                           @input="regexInput">
+                           @input ="regexInput"
+                           v-bind:style="inputWidthDuration"
+                    >
                   </label>
             </div>
             <div class="Min-votes-to-pass">
                 <label>MIN. VOTES TO PASS
                     <input type="text"
+                           v-model="minVotes"
+                           @input="regexInput"
+                           v-bind:style="inputWidthVotes"
                            >
                 </label>
             </div>
             <div class="VOTES-per-user">
                 <label>VOTES PER USER
                     <input type="text"
+                           v-model="votesPerUser"
+                           v-bind:style="inputWidthPerUser"
+                           @input="regexInput"
                           >
                 </label>
             </div>
@@ -32,7 +40,21 @@ export default {
   name: 'Modal',
   data () {
     return {
-      durationInput: ''
+      durationInput: '',
+      minVotes: '',
+      votesPerUser: '',
+      inputWidthDuration: {
+        width: ' px',
+        borderColor: 'white'
+      },
+      inputWidthVotes: {
+        width: ' px',
+        borderColor: 'white'
+      },
+      inputWidthPerUser: {
+        width: ' px',
+        borderColor: 'white'
+      }
     }
   },
   props: {
@@ -42,10 +64,34 @@ export default {
   },
   methods: {
     regexInput () {
-      this.durationInput = this.durationInput.replace(/[^0-9]/g, '')
+      this.durationInput = this.durationInput.replace(/[^0-9]/g, '').replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')
+      if (this.durationInput.length) {
+        this.inputWidthDuration.width = ((this.durationInput.length + 1) * 6.5) + 'px'
+        this.inputWidthDuration.borderColor = '#2db9f0'
+      } else {
+        this.inputWidthDuration.width = ''
+        this.inputWidthDuration.borderColor = 'white'
+      }
+      this.minVotes = this.minVotes.replace(/[^0-9]/g, '').replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')
+      if (this.minVotes.length) {
+        this.inputWidthVotes.width = ((this.minVotes.length + 1) * 6.5) + 'px'
+        this.inputWidthVotes.borderColor = '#2db9f0'
+      } else {
+        this.inputWidthVotes.width = ''
+        this.inputWidthVotes.borderColor = 'white'
+      }
+      this.votesPerUser = this.votesPerUser.replace(/[^0-9]/g, '').replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')
+      if (this.votesPerUser.length) {
+        this.inputWidthPerUser.width = ((this.votesPerUser.length + 1) * 6.5) + 'px'
+        this.inputWidthPerUser.borderColor = '#2db9f0'
+      } else {
+        this.inputWidthPerUser.width = ''
+        this.inputWidthPerUser.borderColor = 'white'
+      }
     }
   }
 }
+
 </script>
 
 <style scoped>
@@ -106,7 +152,10 @@ label:focus-within{
     color: #2db9f0;
 }
 input{
-    border: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-color: white;
     outline:none;
     font-family: Lato;
     font-size: 14px;
@@ -115,12 +164,12 @@ input{
     font-stretch: normal;
     line-height: 1.43;
     letter-spacing: normal;
-    margin-top: 5px;
+    margin-top: 6px;
     color: #3c4a5a;
+
 }
 input:focus{
     caret-color: #2db9f0;
-    text-decoration: underline #2db9f0;
     font-family: Lato;
     font-size: 14px;
     font-weight: normal;
