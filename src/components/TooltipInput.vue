@@ -53,7 +53,7 @@ export default {
         top: 0
         left: 0
         height: 100%
-        pointer-events: none
+        pointer-eventsn: none
         opacity: 1
     .input-wrapper
         width: fit-content
