@@ -9,10 +9,9 @@
             @focus="hasFocus = true"
             @blur="hasFocus = false"
             ref="input"
-            maxlength="20"
-        )
-        .input-mask
-          span {{inputValue}}
+            maxlength="20")
+          .input-mask
+            span {{inputValue}}
 </template>
 
 <script>
@@ -49,25 +48,31 @@ export default {
     @import url('https://fonts.googleapis.com/css?family=Lato')
     .input-mask
         border-bottom: 2px solid #2db9f0
+        pointer-events: none
+        opacity: 0
         position: absolute
+        font-family: Lato
+        font-size: 14px
+        font-weight: normal
+        font-style: normal
+        font-stretch: normal
+        line-height: 1.43
+        letter-spacing: normal
         top: 0
         left: 0
-        height: 100%
-        pointer-eventsn: none
-        opacity: 1
     .input-wrapper
         width: fit-content
         height: fit-content
         position: relative
     .input-mask span
-        opacity: 1
+        opacity: 0
+        position: relative
         font-size: inherit
         font-family: inherit
     .active
         color: #2db9f0
         .input-mask
             opacity: 1
-
     label:focus-within
         color: #2db9f0
 
@@ -80,8 +85,10 @@ export default {
         font-family: inherit
         font-size: inherit
         color: #3c4a5a
+        cursor: text
         &:focus
             caret-color: #2db9f0
+            cursor: auto
 
     label
         text-transform: uppercase
@@ -93,6 +100,7 @@ export default {
         line-height: normal
         letter-spacing: 0.9px
         color: #3c4a5a
+        cursor: pointer
 
     .input-tooltip
         font-family: Lato

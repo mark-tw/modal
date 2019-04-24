@@ -55,6 +55,7 @@ export default {
         outline: none
         background-color: transparent
         opacity: 0.7
+        cursor: pointer
 
     .active
         opacity: 1
