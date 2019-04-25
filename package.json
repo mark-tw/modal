@@ -11,7 +11,8 @@
     "e2e": "node test/e2e/runner.js",
     "test": "jest",
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "loader": "^2.1.1",
@@ -45,6 +46,7 @@
     "copy-webpack-plugin": "^4.0.1",
     "cross-spawn": "^5.0.1",
     "css-loader": "^2.1.1",
+    "cypress": "^3.2.0",
     "eslint": "^4.15.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-friendly-formatter": "^3.0.0",
@@ -105,5 +107,18 @@
       "^.+\\.vue$": "<rootDir>/node_modules/vue-jest",
       "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
     }
-  }
+  },
+  "main": ".eslintrc.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mark-tw/modal.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mark-tw/modal/issues"
+  },
+  "homepage": "https://github.com/mark-tw/modal#readme"
 }
